@@ -21,7 +21,7 @@ def plot_policy_learning(
     Plot the learned disclosure-policy trajectory in two selected dimensions.
 
     The ``result`` argument is expected to be the dictionary returned by
-    ``OSORGame.solve()``, with a ``policy_history`` entry containing one
+    ``BaseGame.solve()``, with a ``policy_history`` entry containing one
     probability dictionary per iteration.
     """
     metric_x = MetricName.coerce(metric_x)
@@ -641,7 +641,7 @@ def plot_state_mask_policy(
     Plot a compact heatmap of the learned state-conditional mask distribution.
 
     The ``result`` argument is expected to be the dictionary returned by
-    ``OSMRGame.solve()``, with a ``final_probabilities`` entry mapping each
+    ``BaseGame.solve()``, with a ``final_probabilities`` entry mapping each
     state name to a mask-probability table.
     """
     final_probabilities = result.get("final_probabilities")
