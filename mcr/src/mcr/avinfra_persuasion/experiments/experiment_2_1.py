@@ -116,7 +116,7 @@ def build_informative_game_two(
 
 if __name__ == "__main__":
     game = build_informative_game_two(seed=1, n_humans=5, n_avs=5)
-    result = game.solve(max_iter=50)
+    result = game.solve(max_iter=200)
 
     print("Converged:", result["converged"])
     print("Iterations:", result["iterations"])
