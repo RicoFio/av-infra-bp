@@ -2,7 +2,7 @@ from typing import Mapping
 from matplotlib import pyplot as plt
 
 from .orders import PartialOrder, Relation
-from .bp.game import Receiver, Preference
+from .bp.receivers import Receiver, Preference
 from .routing.routing_solvers import RoutingSolverConfig
 from .datastructures import (
     World,
@@ -23,58 +23,59 @@ def compare_individual_choices(world: World, individuals: Mapping[str, Receiver]
     }
     
     solution = individuals["human"]._compute_paths()
-    fig, ax = plt.subplots(1,1)
-    ax.set_xlim(4,12)
-    ax.set_ylim(-1,6)
-    fig.suptitle("MOSP", fontweight="bold")
-    plot_pareto_frontier(
-        solution,
-        x_metric=MetricName.TRAVEL_TIME,
-        y_metric=MetricName.HAZARD,
-        objective_names=solution.objective_names,
-        ax=ax,
-        # highlighting={
-        #     "human": individuals['human'].get_path_choice().label,
-        #     "av": individuals['av'].get_path_choice().label
-        # }
-    )
+    # fig, ax = plt.subplots(1,1)
+    # ax.set_xlim(4,12)
+    # ax.set_ylim(-1,6)
+    # fig.suptitle("MOSP", fontweight="bold")
+    # plot_pareto_frontier(
+    #     solution,
+    #     x_metric=MetricName.TRAVEL_TIME,
+    #     y_metric=MetricName.HAZARD,
+    #     objective_names=solution.objective_names,
+    #     ax=ax,
+    #     connect=False,
+    #     highlighting={
+    #         "human": individuals['human'].get_path_choice().label,
+    #         "av": individuals['av'].get_path_choice().label
+    #     }
+    # )
     
     # _, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)
     # plot_infrastructure(
     #     world.network,
     # )
     
-    # plot_scenario(
-    #     world=world,
-    #     # We can sample here since we have one scenario in the support with p=1
-    #     scenario=individuals['human'].prior.sample(1)[0],
-    #     paths={},
-    #     # `_, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)` is creating a new figure and a
-    #     # set of subplots.
-    #     # ax=ax,
-    #     arc_metric=MetricName.HAZARD,
-    #     node_metric=None
-    # )
+    plot_scenario(
+        world=world,
+        # We can sample here since we have one scenario in the support with p=1
+        scenario=individuals['human'].prior.sample(1)[0],
+        paths={},
+        # `_, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)` is creating a new figure and a
+        # set of subplots.
+        # ax=ax,
+        arc_metric=MetricName.HAZARD,
+        node_metric=None
+    )
     
-    # plot_scenario(
-    #     world=world,
-    #     # We can sample here since we have one scenario in the support with p=1
-    #     scenario=individuals['human'].prior.sample(1)[0],
-    #     paths={},
-    #     # ax=ax,
-    #     arc_metric=MetricName.TRAVEL_TIME,
-    #     node_metric=None
-    # )
+    plot_scenario(
+        world=world,
+        # We can sample here since we have one scenario in the support with p=1
+        scenario=individuals['human'].prior.sample(1)[0],
+        paths={},
+        # ax=ax,
+        arc_metric=MetricName.TRAVEL_TIME,
+        node_metric=None
+    )
     
-    # plot_scenario(
-    #     world=world,
-    #     # We can sample here since we have one scenario in the support with p=1
-    #     scenario=individuals['human'].prior.sample(1)[0],
-    #     paths=path_choices,
-    #     # ax=ax,
-    #     arc_metric=None,
-    #     node_metric=None
-    # )
+    plot_scenario(
+        world=world,
+        # We can sample here since we have one scenario in the support with p=1
+        scenario=individuals['human'].prior.sample(1)[0],
+        paths=path_choices,
+        # ax=ax,
+        arc_metric=None,
+        node_metric=None
+    )
     
     plt.show()
 

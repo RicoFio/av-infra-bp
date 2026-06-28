@@ -54,7 +54,9 @@ def receiver_type(mode: str, demand: Demand) -> str:
 def _receiver_mode(individual: Individual) -> str:
     return "human" if individual.id.startswith("h") else "av"
 
-
+#################################
+# This is only for initialization
+#################################
 def _mask_distribution_for(
     *,
     state_name: str,
@@ -122,7 +124,7 @@ def initial_lottery_signal_distributions(
         }
         for state_name in sorted(state_names)
     }
-
+#################################
 
 def build_lottery_policy_game_four(
     seed: int = 1,

@@ -24,7 +24,7 @@ EXPANDED_END = "__turn_state_end__"
 
 @dataclass(frozen=True)
 class RoutingSolutionPoint:
-    """One efficient routing solution recovered from BenPy."""
+    """One efficient routing solution recovered from BenPy/MOSP."""
 
     label: str
     index: int
@@ -46,7 +46,7 @@ class RoutingSolutionPoint:
 
 @dataclass(frozen=True)
 class RoutingSolution:
-    """Readable wrapper around a BenPy routing solution."""
+    """Wrapper around a BenPy/MOSP routing solution."""
 
     raw_solution: Any
     model: BenpyModel

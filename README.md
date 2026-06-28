@@ -1,4 +1,10 @@
-# mixed-customer-response
+# Bayesian Persuasion for Autonomous Vehicle Infrastructure
+
+With this repo, we are trying to answer the question:
+
+```quote
+When an independent 
+```
 
 ## Installation
 
@@ -16,7 +22,7 @@ brew install glpk
 ### Install
 
 ```bash
-git clone <repo-url>
+git clone <repo-url> ./bp4avi
 cd mixed-customer-response
 
 # Set GLPK paths so BenPy builds correctly (macOS)

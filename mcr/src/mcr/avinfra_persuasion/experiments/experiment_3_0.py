@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
+from matplotlib import pyplot as plt
+
 from ..bp.game import Preference
 from ..bp.receivers import PriorRouteChoiceReceiver
 from ..bp.senders import Objective, ScalarSender
@@ -27,6 +29,7 @@ from ..datastructures import (
 from ..networks.toy_3 import create_sample_graph
 from .games.osmrspts import OSMRSPTSGame
 from .helpers import format_mask
+from .plotting import plot_state_mask_policy, plot_typed_state_policy_gradient_fields
 
 
 def build_informative_prior(world: World) -> FinitePrior:
@@ -168,23 +171,23 @@ def build_typed_state_dependent_game_three(
     human_preference = Preference(
         elements={
             MetricName.TRAVEL_TIME,
-            MetricName.COST,
-            MetricName.EMISSIONS,
+            # MetricName.COST,
+            # MetricName.EMISSIONS,
         },
         relations={
-            (MetricName.COST, MetricName.TRAVEL_TIME),
-            (MetricName.EMISSIONS, MetricName.TRAVEL_TIME),
+            # (MetricName.COST, MetricName.TRAVEL_TIME),
+            # (MetricName.EMISSIONS, MetricName.TRAVEL_TIME),
         },
     )
     av_preference = Preference(
         elements={
             MetricName.TRAVEL_TIME,
-            MetricName.HAZARD,
-            MetricName.COST,
+            # MetricName.HAZARD,
+            # MetricName.COST,
         },
         relations={
-            (MetricName.COST, MetricName.HAZARD),
-            (MetricName.TRAVEL_TIME, MetricName.HAZARD),
+            # (MetricName.COST, MetricName.HAZARD),
+            # (MetricName.TRAVEL_TIME, MetricName.HAZARD),
         },
     )
     sender_preference = Preference(
@@ -257,7 +260,7 @@ def format_typed_mask_profile(
 
 if __name__ == "__main__":
     game = build_typed_state_dependent_game_three(seed=1, n_humans=5, n_avs=5)
-    result = game.solve(max_iter=50)
+    result = game.solve(max_iter=1)
 
     print("Converged:", result["converged"])
     print("Iterations:", result["iterations"])
@@ -291,3 +294,12 @@ if __name__ == "__main__":
         )
 
     print("Final expected sender metric:", f"{result['expected_sender_metric']:.4f}")
+    plot_state_mask_policy(result)
+    plot_typed_state_policy_gradient_fields(
+        MetricName.HAZARD,
+        MetricName.TRAVEL_TIME,
+        game,
+        result=result,
+        grid_size=10,
+    )
+    plt.show()
