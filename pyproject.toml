@@ -1,33 +1,14 @@
 [project]
-name = "mixed-customer-response"
+name = "BP4SI"
 version = "0.1.0"
-description = "Add your description here"
+description = "Bayesian Persuasion approaches for real-world Smart Infrastructure"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "benpy",
-    "cython>=3.2.4",
-    "gurobipy>=13.0.1",
-    "jupyterlab>=4.5.6",
-    "mcr",
-    "networkx>=3.6.1",
-    "pydantic>=2.13.0",
-    "pytest>=9.0.3",
-    "ruff>=0.15.11",
-    "taichi>=1.7.4",
-    "tqdm>=4.67.3",
+    
 ]
 
 [tool.uv.workspace]
 members = [
-    "mcr",
-]
-
-[tool.uv.sources]
-benpy = { git = "https://github.com/markobud/benpy", rev = "development" }
-mcr = { workspace = true }
-
-[dependency-groups]
-dev = [
-    "mcr",
+    "bp",
 ]

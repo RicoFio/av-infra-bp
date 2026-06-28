@@ -1,0 +1,17 @@
+[project]
+name = "bp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cython>=3.2.4",
+    "gurobipy>=13.0.1",
+    "jupyterlab>=4.5.6",
+    "networkx>=3.6.1",
+    "pydantic>=2.13.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.11",
+    "taichi>=1.7.4",
+    "tqdm>=4.67.3",
+]
