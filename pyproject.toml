@@ -5,8 +5,16 @@ description = "Bayesian Persuasion approaches for real-world Smart Infrastructur
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    
+    "bp",
 ]
+
+[tool.uv]
+# The repo root only orchestrates the workspace; it is not an installable
+# package itself. The actual library lives in the `bp` member.
+package = false
+
+[tool.uv.sources]
+bp = { workspace = true }
 
 [tool.uv.workspace]
 members = [
